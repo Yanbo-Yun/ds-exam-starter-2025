@@ -56,7 +56,7 @@ export class ExamStack extends cdk.Stack {
         resources: [table.tableArn],
       }),
     });
-
+    table.grantReadData(question1Fn);
     const api = new apig.RestApi(this, "ExamAPI", {
       description: "Exam api",
       deployOptions: {
