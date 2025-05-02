@@ -69,6 +69,11 @@ export class ExamStack extends cdk.Stack {
         allowOrigins: ["*"],
       },
     });
+    const crewRoute = api.root
+     .addResource("crew")
+     .addResource("movies")
+     .addResource("{movieId}");
+    crewRoute.addMethod("GET", new apig.LambdaIntegration(question1Fn));
 
     const anEndpoint = api.root.addResource("patha");
 
