@@ -120,6 +120,9 @@ export class ExamStack extends cdk.Stack {
         REGION: "eu-west-1",
       },
     });
+
+    lambdaYFn.addEnvironment("QUEUE_B_URL", queueB.queueUrl);
+    queueB.grantSendMessages(lambdaYFn);
    
     topic1.addSubscription(
       new subs.SqsSubscription(queueA, {
